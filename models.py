@@ -1,5 +1,5 @@
 from sqlalchemy import Boolean, Column, ForeignKey, String, Integer, Float
-from database import Base
+from db.setup import Base
 
 class Members(Base):
     __tablename__ = "members"
@@ -20,5 +20,5 @@ class Answers(Base):
     __tablename__ = "answers"
 
     id = Column(Integer, primary_key=True, index=True)
-    questionId = Column(Integer, ForeignKey("quesitions.id"), index=True)
+    questionId = Column(Integer, ForeignKey("questions.id"), index=True)
     rate = Column(Float, index=True)

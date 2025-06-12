@@ -10,7 +10,7 @@ def getEnvVariable(key: str, defaultValue: str = None):
     value = os.getenv(key=key)
     if value is None:
         if defaultValue is None:
-            raise EnvironmentError("{key} is not defined in environment variables")
+            raise EnvironmentError(f"{key} is not defined in environment variables")
         else:
             return defaultValue
     return value

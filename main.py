@@ -1,12 +1,11 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 import models
-from db.setup import engine, db_dependency
-from sqlalchemy.orm import Session
-import services.members as membersServices
+from db.setup import engine
+from routes import members, answers, questions
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
-@app.get("/members")
-async def get_members(db: db_dependency):
-    return membersServices.getMembers(db)
+app.include_router(members.router, prefix="/members", tags=["Members"])
+app.include_router(answers.router, prefix="/answers", tags=["Answers"])
+app.include_router(questions.router, prefix="/questions", tags=["Questions"])

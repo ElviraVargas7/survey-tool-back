@@ -4,14 +4,13 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from fastapi import Depends
 from typing import Annotated
-from db.setup import engine, SessionLocal
 from sqlalchemy.orm import Session
 
 URL_DATABASE = config.DATABASE_URL
 engine = create_engine(URL_DATABASE)
 
 #configure the session to be used for db operations
-Sessionlocal = sessionmaker(auocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 #serves as the base class fordeclarative models
 Base = declarative_base()
@@ -22,6 +21,6 @@ def get_db():
     try:
         yield db
     finally:
-        db.Close()
+        db.close()
 
 db_dependency = Annotated[Session, Depends(get_db)]
