@@ -1,17 +1,18 @@
 from pydantic import BaseModel
+from uuid import UUID
 
 class Members(BaseModel):
-    id: str
+    id: UUID
     name: str
     email: str
     has_answers: bool
 
-class Question(BaseModel):
-    id: str
+class Questions(BaseModel):
+    id: int
     question: str
 
 #no memberId do it is annonymous
 class Answers(BaseModel):
-    id: str
-    questionId: str
+    id: int
+    questionId: int
     rate: float
