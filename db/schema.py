@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 from uuid import UUID
 
@@ -13,6 +14,6 @@ class Questions(BaseModel):
 
 #no memberId do it is annonymous
 class Answers(BaseModel):
-    id: int
+    id: Optional[int] = None 
     questionId: int
     rate: float

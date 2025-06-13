@@ -7,6 +7,9 @@ from db.schema import Members
 def getMembers(db: Session):
     return db.query(models.Members).all()
 
+def getMemberById(id: str, db: Session):
+    return db.query(models.Members).filter(models.Members.id == id).first()
+
 def addMember(member: Members, db: Session):
     dbMember = db.query(models.Members).filter(models.Members.email == member.email).first()
     if dbMember is None:
@@ -43,6 +46,21 @@ def updateMember(email: str, updated_data: Members, db: Session):
     
     dbMember.name = updated_data.name
     dbMember.email = updated_data.email
+
+    db.commit()
+    db.refresh(dbMember)
+    
+    return dbMember
+
+def setAsAnsweredMember(memberId: str, db: Session):
+    dbMember = db.query(models.Members).filter(models.Members.id == memberId).first()
+    if dbMember is None:
+        logging.error(f"Member with guid id {memberId} not found")
+        raise Exception("Member not found")
+
+    logging.info(f"Updating member with guid id {memberId}")
+    
+    dbMember.has_answers = True
 
     db.commit()
     db.refresh(dbMember)

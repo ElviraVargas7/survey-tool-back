@@ -25,4 +25,3 @@ def getAverage(db: Session) -> List[Dict]:
         }
         for r in results
     ]
-

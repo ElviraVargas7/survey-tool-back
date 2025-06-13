@@ -1,3 +1,4 @@
+import logging
 from fastapi import APIRouter
 from db.setup import db_dependency
 from db.schema import Members as MemberSchema
@@ -10,6 +11,11 @@ router = APIRouter()
 @router.get("", response_model=List[MemberSchema])
 def get_members(db: db_dependency):
     return membersServices.getMembers(db)
+
+@router.get("/{id}", response_model=MemberSchema)
+def get_member_by_id(id: str, db: db_dependency):
+    print("id",id)
+    return membersServices.getMemberById(id, db)
 
 @router.post("", response_model=MemberSchema)
 def create_member(member: MemberSchema, db: db_dependency):
