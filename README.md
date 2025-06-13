@@ -154,6 +154,41 @@ This backend can be enhanced to support **evaluations aligned with having multip
 
 Implementing this structure would enable confidential leadership assessments that are structured, scalable, and compliant with anonymity requirements.
 
+## 📌 Documentation of Assumptions
+
+The following assumptions have been made during the development of this backend system:
+
+1. **Fixed Question Set**
+
+   - The survey operates with a fixed set of questions. New questions are not added dynamically once the survey cycle starts.
+
+2. **One Submission per Member**
+
+   - Each member can submit answers only once. There is no option to edit or re-submit.
+
+3. **Anonymous Responses (for future enhancement)**
+
+   - In the enhanced version, team members submit answers anonymously. While member records exist, answers are not linked to them.
+
+4. **Manager-Team Relationship (planned)**
+
+   - Each manager is expected to have multiple team members.
+
+5. **Survey Results Are Read-Only Once Submitted**
+
+   - No modification or deletion of answers is supported after submission, in order to preserve integrity of analytics.
+
+6. **PDF Reports Are Generated On Demand**
+
+   - Report generation is dynamic and does not persist PDFs to disk or cloud storage unless implemented separately.
+
+7. **No Authentication Layer Yet**
+
+   - This backend assumes it is used in a secure, internal environment or behind an API gateway. Authentication (JWT, OAuth) is not yet implemented.
+
+8. **Database Schema Auto Creation**
+   - Tables are auto-generated using `SQLAlchemy` on app startup via `Base.metadata.create_all`. This is acceptable for development, but not recommended for production without migrations.
+
 ## 👨‍💻 Author
 
 Developed by Elvira Vargas 😸
