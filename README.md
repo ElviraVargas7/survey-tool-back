@@ -77,6 +77,23 @@ uvicorn main:app --reload
 Your FastAPI server will be running at:
 👉 http://localhost:8000/docs (interactive Swagger UI)
 
+## 🗃️ Database Initialization
+
+Step 1: Create the database manually
+Make sure your database (PostgreSQL) is created.
+Tables will be created automatically when you run the FastAPI app for the first time (models.Base.metadata.create_all(bind=engine) is used).
+
+Step 2: Insert initial survey questions
+Once the tables are created, insert the questions manually:
+
+```bash
+INSERT INTO questions (question) VALUES ('question 1');
+INSERT INTO questions (question) VALUES ('question 2');
+INSERT INTO questions (question) VALUES ('question 3');
+```
+
+This ensures that the survey has questions to display in the frontend.
+
 ## 🌐 CORS Configuration
 
 ```bash
