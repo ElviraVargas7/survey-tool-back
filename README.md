@@ -142,6 +142,18 @@ SQLAlchemy models are defined in models/
 All DB interaction logic is in services/
 All routes are modular under routes/ and registered in main.py
 
+## ## 🔧 Enhancement Idea
+
+This backend can be enhanced to support **evaluations aligned with having multiple managers**. The improvement would introduce a `Manager` entity and extend the data model as follows:
+
+- 👤 **Managers** are related to a group of team members (1:N relationship).
+- 🧑‍🤝‍🧑 **Team Members** are assigned to a manager but do not appear in the answer data.
+- 📝 **Answers** are submitted anonymously, they are **not linked to team members**, ensuring confidentiality.
+- 🔗 However, answers are **linked to a specific manager ID**, allowing the aggregation of feedback per manager.
+- 📊 The report generation logic can be extended to support breakdowns **by manager and their team**.
+
+Implementing this structure would enable confidential leadership assessments that are structured, scalable, and compliant with anonymity requirements.
+
 ## 👨‍💻 Author
 
 Developed by Elvira Vargas 😸
